@@ -28,7 +28,6 @@ class MemoryStore:
         """)
         self.conn.commit()
 
-    # Patch missing 'triggers' column if it doesn't exist
         try:
             self.cursor.execute("ALTER TABLE messages ADD COLUMN triggers TEXT")
             self.conn.commit()
