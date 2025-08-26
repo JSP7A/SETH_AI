@@ -1,5 +1,5 @@
 import re
-from seth_core.chat_engine import call_llm  # updated path for Mac version
+from seth_core.chat_engine import call_llm  
 
 def extract_keywords(text, max_keywords=8):
     """
