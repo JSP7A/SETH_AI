@@ -9,7 +9,7 @@ from sentence_transformers import SentenceTransformer
 # Constants
 FAISS_INDEX_PATH = os.path.join(os.path.dirname(__file__), "memory_index.faiss")
 SQLITE_DB_PATH = os.path.join(os.path.dirname(__file__), "memory_meta.db")
-EMBEDDING_DIM = 768  # Update if your embedder is different
+EMBEDDING_DIM = 768 
 TOP_K = 5
 
 # Load embedder
@@ -69,7 +69,7 @@ def search_memory(query, top_k=TOP_K):
 def build_prompt_from_memory(memory_messages, user_input):
     prompt = []
 
-    # ✅ System persona lock
+    # System persona lock
     prompt.append({
         "role": "system",
         "content": (
@@ -80,7 +80,7 @@ def build_prompt_from_memory(memory_messages, user_input):
         )
     })
 
-    # ✅ Only inject USER memory messages
+    # Only inject USER memory messages
     for mem in memory_messages:
         if mem.get("sender") == "user":
             prompt.append({
@@ -88,7 +88,7 @@ def build_prompt_from_memory(memory_messages, user_input):
                 "content": mem.get("message", "")
             })
 
-    # ✅ Add current message
+    # Add current message
     prompt.append({
         "role": "user",
         "content": user_input
